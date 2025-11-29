@@ -31,6 +31,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.3.7",
     "@types/node": "^24.10.1",
+    "@types/react": "^19.2.7",
     "ts-node": "^10.9.2",
     "tsup": "^8.5.1",
     "tsx": "^4.20.6",
@@ -42,6 +43,7 @@
     "@langchain/google-genai": "^2.0.0",
     "@langchain/langgraph": "^1.0.2",
     "langchain": "^1.1.1",
+    "react": "^19.2.0",
     "vitest": "^4.0.13"
   }
 }

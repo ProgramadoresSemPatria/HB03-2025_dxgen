@@ -12,16 +12,24 @@
     "lint": "biome check ."
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.48.0",
+    "@inkjs/ui": "^2.0.0",
     "@repo/ai": "1.0.0",
+    "@supabase/supabase-js": "^2.48.0",
     "commander": "^14.0.2",
     "dotenv": "^16.4.5",
+    "ink": "^5.2.1",
+    "ink-select-input": "^6.2.0",
+    "ink-spinner": "^5.0.0",
+    "ink-table": "^3.1.0",
+    "ink-text-input": "^6.0.0",
     "open": "^10.1.0",
     "ora": "^8.1.1",
-    "prompts": "^2.4.2"
+    "prompts": "^2.4.2",
+    "react": "^18.3.1"
   },
   "devDependencies": {
+    "@commander-js/extra-typings": "^14.0.0",
     "@types/prompts": "^2.4.9",
-    "@commander-js/extra-typings": "^14.0.0"
+    "@types/react": "^18.3.27"
   }
 }
