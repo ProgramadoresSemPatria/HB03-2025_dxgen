@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🖥️ DXENG · Frontend Platform
 
-## Getting Started
+![Next.js](https://img.shields.io/badge/Next.js-black?style=flat-square&logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-Blue?style=flat-square&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Styling-Tailwind_CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)
+![Vercel](https://img.shields.io/badge/Deploy-Vercel-black?style=flat-square&logo=vercel&logoColor=white)
 
-First, run the development server:
+> The administrative interface and documentation portal for the **DXENG Platform**.
+
+This project serves as the presentation layer for our Developer Experience platform. It consumes the monorepo's APIs and agents to provide dashboards, AI-generated documentation visualization, and management tools for engineering teams.
+
+---
+
+##  Features
+
+* **⚡ Next.js App Router:** Modern architecture using React Server Components.
+* **🎨 Responsive UI:** Fast and consistent styling (via Tailwind/PostCSS).
+* **🤖 AI Integration:** Chat interface and visualization for agents (RAG/Dxgen).
+* **📊 Dashboards:** Visualization of engineering metrics and project status.
+
+---
+
+##  Getting Started
+
+Follow the steps below to run the application locally.
+
+### Prerequisites
+
+* Node.js 20+
+* Package manager (`npm`, `yarn`, `pnpm`, or `bun`)
+
+### 1. Installation
+
+Since this project is part of a monorepo, make sure to install dependencies at the root level:
 
 ```bash
+# At the monorepo root
+npm install
+```
+## 2. Environment Configuration
+Copy the example file to configure your local variables (API keys, backend URLs, etc.)
+
+```
+Bash
+cp .env.example .env.local
+```
+## 3. Running the Server
+Start the development server:
+```
+Bash
+
 npm run dev
 # or
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
+Open http://localhost:3000 with your browser to see the result.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📂 Project Structure
+Below is a quick overview of the main folders within ```src/``` or ```app/:```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Folder /// Description
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```app/```	Application routes (Pages, Layouts, API Routes).
 
-## Learn More
+```components/``` 	Reusable React components (Buttons, Cards, Inputs).
 
-To learn more about Next.js, take a look at the following resources:
+```lib/```	Utility functions, client configurations (e.g., Supabase, Axios).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```public/```	Static assets (Images, Fonts, Icons).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## ☁️ Deploy
+The easiest way to deploy this app is through Vercel:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Check out the [ Next.js Deployment Documentation](https://nextjs.org/docs/app/getting-started/deploying) for more details.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
