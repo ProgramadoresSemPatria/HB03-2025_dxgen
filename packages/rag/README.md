@@ -1,26 +1,41 @@
-# @dxgen/rag
+# dxgen/rag
 
-RAG toolkit used by the DXGen CLI to scan a repository, chunk the relevant files,
-store embeddings in Pinecone (per user + project), and retrieve context for
-LangChain / LangGraph chains.
+RAG (Retrieval-Augmented Generation) toolkit for DXGen. Scans repositories, chunks files, stores embeddings in Pinecone, and retrieves context for LangChain/LangGraph chains.
 
 ## Features
 
-- File system scanner with configurable extensions & ignore globs.
-- Chunking via LangChain `RecursiveCharacterTextSplitter` with source metadata
-  (path, chunk index, line ranges).
-- Pinecone sync helpers for both incremental updates and full namespace resets.
-- Pinecone-backed LangChain retriever with optional fallback for hybrid flows.
-- High-level `runRagPipeline` helper that can `sync` (scan→chunk→index) or run
-  read-only retrieval depending on CLI flags.
+| Feature | Description |
+| :--- | :--- |
+| **File Scanner** | Configurable extensions, ignore globs, respects `.gitignore` |
+| **Smart Chunking** | LangChain `RecursiveCharacterTextSplitter` with source metadata |
+| **Pinecone Sync** | Incremental updates and full namespace resets |
+| **Vector Retriever** | Pinecone-backed LangChain retriever with fallback support |
+| **Pipeline Helper** | `runRagPipeline` for sync or read-only retrieval |
 
-## Environment variables
+## Architecture
 
-| Variable | Purpose |
-| - | - |
-| `OPENAI_API_KEY` | Required for embeddings via `@langchain/openai`. |
-| `PINECONE_API_KEY` | Required for Pinecone data plane access. |
-| `PINECONE_CONTROLLER_HOST` | Optional. Override when using multiple Pinecone projects. |
+```
+rag/
+├── src/
+│   ├── index.ts          # Public exports
+│   ├── pipeline.ts       # High-level RAG pipeline orchestrator
+│   ├── file-scanner.ts   # Project file discovery
+│   ├── chunker.ts        # Text splitting with metadata
+│   ├── embeddings.ts     # OpenAI embeddings wrapper
+│   ├── pinecone-sync.ts  # Vector store synchronization
+│   ├── retriever.ts      # Document retrieval
+│   └── types.ts          # Type definitions
+├── package.json
+└── vitest.config.ts
+```
+
+## Environment Variables
+
+| Variable | Required | Description |
+| :--- | :--- | :--- |
+| `OPENAI_API_KEY` | Yes | Embeddings via `@langchain/openai` |
+| `PINECONE_API_KEY` | Yes | Pinecone data plane access |
+| `PINECONE_CONTROLLER_HOST` | No | Override for multiple Pinecone projects |
 
 ## Usage
 
@@ -75,12 +90,30 @@ const pinecone = {
 Namespaces default to `dxgen-{userId}-{projectId}` but can be overridden via
 `pinecone.namespace`.
 
+## Development
+
+```bash
+# Build the package
+npm run build --workspace=@dxgen/rag
+
+# Run tests
+npm run test --workspace=@dxgen/rag
+
+# Lint
+npm run lint --workspace=@dxgen/rag
+```
+
 ## Testing
 
-```
-npm run test --workspace=@dxgen/rag
-```
+Vitest covers:
+- Chunk metadata extraction
+- Retriever's Pinecone + fallback behavior
+- Pipeline orchestration
 
-Vitest covers chunk metadata extraction plus the retriever’s Pinecone + fallback
-behaviour. Add integration tests alongside the CLI once the end-to-end flow is
-wired.
+## Dependencies
+
+- **LangChain** – Text splitting and retriever base
+- **@langchain/openai** – OpenAI embeddings
+- **@pinecone-database/pinecone** – Vector store client
+- **fdir** – Fast directory traversal
+- **globby** – Glob pattern matching
